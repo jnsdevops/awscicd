@@ -3,8 +3,8 @@ pipeline {
 
  environment {
    BRANCH_NAME = 'main'
-   GIT_URL = 'https://github.com/kserge2001/awscicd.git' 
-   IMAGE_TAG = 'kserge2001/awscicd'
+   GIT_URL = 'https://github.com/jnsdevops/awscicd.git' 
+   IMAGE_TAG = 'jsonsang/awscicd'
    IMAGE_VERSION = "${BUILD_NUMBER}"
     }
 
