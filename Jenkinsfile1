@@ -1,19 +1,37 @@
 pipeline {
     agent any
+
+    environment {
+        BRANCH_NAME = 'main'
+        GIT_URL = 'https://github.com/jnsdevops/awscicd.git'
+        IMAGE_TAG = 'jsonsang/awscicd'
+        IMAGE_VERSION = "${BUILD_NUMBER}"
+    }
+
     stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out code...'
+                git branch: "${BRANCH_NAME}", url: "${GIT_URL}"
+            }
+        }
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building Docker image...'
+                sh 'docker build -t ${IMAGE_TAG}:${IMAGE_VERSION} .'
+                sh 'docker images'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Testing...'
+                // Add your test commands here
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying...'
+                // Add your deploy commands here
             }
         }
     }
